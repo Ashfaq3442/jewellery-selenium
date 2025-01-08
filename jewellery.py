@@ -23,38 +23,38 @@ for i in range(1,10):
 
     try:
         price=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[2]/p").text
-    except FileNotFoundError:
+    except ModuleNotFoundError:
         pass
 
     try:
         Review=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[1]/a/div/div[7]/div").text
-    except FileNotFoundError:
+    except ModuleNotFoundError:
         pass
 
     try:
         Ring_Name=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/h1").text
-    except FileNotFoundError:
+    except ModuleNotFoundError:
         pass
     Detail_find_element=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[6]/div[1]/button/div[2]").click()
 
     try:
         Avg=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[6]/div[1]/div/div/table/tr[1]/td").text
-    except FileNotFoundError:
+    except ModuleNotFoundError:
         pass
 
     try:
         Carat_Total_Weight=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[6]/div[1]/div/div/table/tr[2]/td").text
-    except FileNotFoundError:
+    except ModuleNotFoundError:
         pass
 
     try:
         Average_band_width=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[6]/div[1]/div/div/table/tr[3]/td").text
-    except FileNotFoundError:
+    except ModuleNotFoundError:
         pass
 
     try:
         center_stone_size=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[6]/div[1]/div/div/table/tr[4]/td").text
-    except FileNotFoundError:
+    except ModuleNotFoundError:
         pass
     print("................\n\n\n\n")
     print("Ring Name :", Ring_Name)
