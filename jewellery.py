@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 
 import time
 import pandas as pd
@@ -23,38 +24,38 @@ for i in range(1,10):
 
     try:
         price=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[2]/p").text
-    except ModuleNotFoundError:
+    except NoSuchElementException:
         pass
 
     try:
         Review=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[1]/a/div/div[7]/div").text
-    except ModuleNotFoundError:
+    except NoSuchElementException:
         pass
 
     try:
         Ring_Name=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/h1").text
-    except ModuleNotFoundError:
+    except NoSuchElementException:
         pass
     Detail_find_element=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[6]/div[1]/button/div[2]").click()
 
     try:
         Avg=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[6]/div[1]/div/div/table/tr[1]/td").text
-    except ModuleNotFoundError:
+    except NoSuchElementException:
         pass
 
     try:
         Carat_Total_Weight=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[6]/div[1]/div/div/table/tr[2]/td").text
-    except ModuleNotFoundError:
+    except NoSuchElementException:
         pass
 
     try:
         Average_band_width=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[6]/div[1]/div/div/table/tr[3]/td").text
-    except ModuleNotFoundError:
+    except NoSuchElementException:
         pass
 
     try:
         center_stone_size=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[6]/div[1]/div/div/table/tr[4]/td").text
-    except ModuleNotFoundError:
+    except NoSuchElementException:
         pass
     print("................\n\n\n\n")
     print("Ring Name :", Ring_Name)
@@ -94,6 +95,8 @@ for i in range(1,10):
 #         link = driver.find_element(By.XPATH, f"/html/body/div[1]/div[1]/main/div/div[5]/div[2]/div/div[3]/ul/li[{i}]/a")
 #         product_url = link.get_attribute("href")
 #         driver.get(product_url)
+
+
 
 #         try:
 #             ring_name = driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/h1").text
@@ -144,6 +147,7 @@ for i in range(1,10):
 #         print("Average Band Width :", average_band_width)
 #         print("Center Stone Size :", center_stone_size)
 #         print("................\n")
+
 
 #         time.sleep(7)
 #         driver.back()
