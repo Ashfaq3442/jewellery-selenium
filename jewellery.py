@@ -12,6 +12,7 @@ chrome_options.add_experimental_option("detach",True)
 driver=webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
 driver.maximize_window()
 driver.get("https://cullenjewellery.com/engagement-rings")
+
 for i in range(1,10):
     price=Review=Ring_Name=Avg=Average_band_width=Carat_Total_Weight=center_stone_size=None
     link=driver.find_element(By.XPATH,f"/html/body/div[1]/div[1]/main/div/div[5]/div[2]/div/div[3]/ul/li[{i}]/a")
