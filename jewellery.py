@@ -13,6 +13,8 @@ driver=webdriver.Chrome(service=Service(ChromeDriverManager().install()),options
 driver.maximize_window()
 driver.get("https://cullenjewellery.com/engagement-rings")
 
+data=[]
+
 for i in range(1,10):
     price=Review=Ring_Name=Avg=Average_band_width=Carat_Total_Weight=center_stone_size=None
     link=driver.find_element(By.XPATH,f"/html/body/div[1]/div[1]/main/div/div[5]/div[2]/div/div[3]/ul/li[{i}]/a")
@@ -56,6 +58,17 @@ for i in range(1,10):
         center_stone_size=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/section/div[6]/div[1]/div/div/table/tr[4]/td").text
     except NoSuchElementException:
         center_stone_size="N/A"
+
+    data.append({
+    "Ring Name" : Ring_Name,
+    "Price : ":price,
+    "Review :":Review,
+    "Avg. No. Side Stones" :Avg,
+    "Carat Weight" :Carat_Total_Weight,
+    "Average Band Width :":Average_band_width,
+    "Center Stone Size :":center_stone_size,
+    })
+
     print("................\n\n\n\n")
     print("Ring Name :", Ring_Name)
     print("Price : ",price)
@@ -68,3 +81,6 @@ for i in range(1,10):
     time.sleep(7)
     driver.back()
     time.sleep(3)
+df=pd.DataFrame(data)
+df.to_csv("Engagment Rings", index=False)
+driver.quit
