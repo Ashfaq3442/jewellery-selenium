@@ -15,7 +15,7 @@ driver.get("https://cullenjewellery.com/engagement-rings")
 
 data=[]
 
-for i in range(1,10):
+for i in range(1,40):
     price=Review=Ring_Name=Avg=Average_band_width=Carat_Total_Weight=center_stone_size=None
     link=driver.find_element(By.XPATH,f"/html/body/div[1]/div[1]/main/div/div[5]/div[2]/div/div[3]/ul/li[{i}]/a")
     product_url = link.get_attribute("href")
@@ -69,18 +69,18 @@ for i in range(1,10):
     "Center Stone Size :":center_stone_size,
     })
 
-    print("................\n\n\n\n")
-    print("Ring Name :", Ring_Name)
-    print("Price : ",price)
-    print("Review :",Review)
-    print("Avg. No. Side Stones :",Avg)
-    print("Carat Weight :",Carat_Total_Weight)
-    print("Average Band Width :",Average_band_width)
-    print("Center Stone Size :", center_stone_size)
-    print("................\n\n\n\n")
-    time.sleep(7)
+    # print("................\n\n\n\n")
+    # print("Ring Name :", Ring_Name)
+    # print("Price : ",price)
+    # print("Review :",Review)
+    # print("Avg. No. Side Stones :",Avg)
+    # print("Carat Weight :",Carat_Total_Weight)
+    # print("Average Band Width :",Average_band_width)
+    # print("Center Stone Size :", center_stone_size)
+    # print("................\n\n\n\n")
+    time.sleep(3)
     driver.back()
     time.sleep(3)
 df=pd.DataFrame(data)
-df.to_csv("Engagment Rings", index=False)
+df.to_csv("engagement_rings.csv", index=False, encoding='utf-8', sep=',')
 driver.quit
