@@ -19,9 +19,12 @@ driver.get("https://cullenjewellery.com/engagement-rings")
 image_folder="Ring Images"
 os.makedirs(image_folder,exist_ok=True)
 
+def sanitize_folder_name(name):
+    return "".join(c if c.isalnum() or c in " _-" else "_" for c in name)
+
 data=[]
 
-for i in range(1,5):
+for i in range(1,51):
     price=Review=Ring_Name=Avg=Average_band_width=Carat_Total_Weight=center_stone_size=None
     link=driver.find_element(By.XPATH,f"/html/body/div[1]/div[1]/main/div/div[5]/div[2]/div/div[3]/ul/li[{i}]/a")
     product_url = link.get_attribute("href")
@@ -65,11 +68,15 @@ for i in range(1,5):
     except NoSuchElementException:
         center_stone_size="N/A"
 
+    folder_name = sanitize_folder_name(Ring_Name)
+    ring_image_folder = os.path.join(image_folder, folder_name)
+    os.makedirs(ring_image_folder, exist_ok=True)
+
     try:
         for j in range(1,10):
-            image_element=driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/main/div/div/div/div[1]/div/div/div/div[3]/button[1]/div[1]/div/div/img")
+            image_element=driver.find_element(By.XPATH,f"/html/body/div[1]/div[1]/main/div/div/div/div[1]/div/div/div/div[3]/button[{j}]/div[1]/div/div/img")
             image_url=image_element.get_attribute("src")
-            image_file_name=os.path.join(image_folder, f"ring{j}.jpg")
+            image_file_name=os.path.join(ring_image_folder, f"ring{j}.jpg")
             response=requests.get(image_url, stream=True)
             if response.status_code==200:
                 with open (image_file_name, "wb") as file:
@@ -103,7 +110,7 @@ for i in range(1,5):
     # print("................\n\n\n\n")
     time.sleep(7)
     driver.back()
-    time.sleep(3)
+    time.sleep(5)
 df=pd.DataFrame(data)
 df.to_csv("engagement_rings.csv", index=False, encoding='utf-8', sep=',')
 driver.quit
